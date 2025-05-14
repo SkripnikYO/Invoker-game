@@ -49,6 +49,9 @@ class Spell(sprite.Sprite):
         window.blit(self.image, (self.rect.x, self.rect.y))
         window.blit(self.text.image, (self.text.rect.x, self.text.rect.y))
 
+
+ColdSnap = Spell('images/Cold snap.png','Cold Snap', 50, 50, 750, 50)
+
 finish = False 
 run = True
 while run:
