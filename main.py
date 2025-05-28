@@ -13,12 +13,12 @@ SPELLS = {
     'QQQ': ['Cold Snap','images/Cold snap.png'],
     'WWW': ['EMP','images/EMP.png'],
     'EEE': ['Sun Strike','images/Sun strike.png'],
-    'QWE': ['Deafening Blast','images/deafeaning blast.png'],
+    'EQW': ['Deafening Blast','images/deafeaning blast.png'],
     'QWW': ['Tornado','images/Tornado.png'],
-    'QEE': ['Forge Spirit','images/forge spirit1.png'],
-    'WQE': ['Chaos Meteor','images/Chaos meteor.png'],
-    'QQE': ['Ice Wall','images/ice wall.png'],
-    'WWE': ['Alacrity','images/Alacrity.png'],
+    'EEQ': ['Forge Spirit','images/forge spirit1.png'],
+    'EEW': ['Chaos Meteor','images/Chaos meteor.png'],
+    'EQQ': ['Ice Wall','images/ice wall.png'],
+    'EWW': ['Alacrity','images/Alacrity.png'],
     'QQW': ['Ghost Walk','images/Ghost walk.png']
 }
 FONTNAME = "Marvel-Bold.ttf"
@@ -85,12 +85,32 @@ card_spells.add(CardSpell('images/ntg.png','D',50,50,450,600))
 card_spells.add(CardSpell('images/ntg.png','F',50,50,500,600))
 card_spells.add(CardSpell('images/invoke.png','R',50,50,550,600))
 
+curent_spell = choice(list(SPELLS.keys()))
+spellcard = Spell(SPELLS[curent_spell][1], SPELLS[curent_spell][0], 100, 100, 350, 300)
+curentbuttons = ""
 
 finish = False 
 run = True
 while run:
     window.fill((0,0,0))
     for e in event.get():
+        if e.type == KEYDOWN:
+            pressedkey = key.name(e.key)
+            curentbuttons+=pressedkey
+            if len(curentbuttons)>=3:
+                sorted_btns = sorted(curentbuttons.upper())
+                sorted_btns = ''.join(sorted_btns)
+                check = SPELLS.get(sorted_btns)
+                print(curentbuttons)
+                curentbuttons = ""
+                
+                if check:
+                    del SPELLS[curent_spell]
+                    print('Правильно')
+                    curent_spell = choice(list(SPELLS.keys()))
+                    spellcard = Spell(SPELLS[curent_spell][1], SPELLS[curent_spell][0], 100, 100, 350, 300)
+                    curentbuttons = ""
+                
         if e.type == QUIT:
             run = False
     for spell in spells:
@@ -99,6 +119,7 @@ while run:
         control.draw(window)
     for card_spell in card_spells:
         card_spell.draw(window)
+    spellcard.draw(window)
     display.update()
     clock.tick(60)
 
