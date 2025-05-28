@@ -53,7 +53,7 @@ class Spell(sprite.Sprite):
 class CardSpell(Spell):
     def __init__(self,sprite_image,text,width,height,x,y):
         super().__init__(sprite_image,text,width,height,x,y)
-        self.text = Label(text,x+width-20,y,fontsize=15)
+        self.text = Label(text,x+35,y,fontsize=25)
 
 spells = sprite.Group()
 spells.add(Spell('images/Cold snap.png','Cold Snap', 50, 50, 750, 0))
@@ -75,6 +75,15 @@ controls.add(Spell('images/ntg.png','Spell 1 - D',50,50,100,150))
 controls.add(Spell('images/ntg.png','Spell 2 - F',50,50,100,200))
 controls.add(Spell('images/invoke.png','Invoke - R',50,50,100,250))
 
+card_spells = sprite.Group()
+card_spells.add(CardSpell('images/quas.png','Q',50,50,300,600))
+card_spells.add(CardSpell('images/wex.png','W',50,50,350,600))
+card_spells.add(CardSpell('images/exort.png','E',50,50,400,600))
+card_spells.add(CardSpell('images/ntg.png','D',50,50,450,600))
+card_spells.add(CardSpell('images/ntg.png','F',50,50,500,600))
+card_spells.add(CardSpell('images/invoke.png','R',50,50,550,600))
+
+
 finish = False 
 run = True
 while run:
@@ -86,6 +95,8 @@ while run:
         spell.draw(window)
     for control in controls:
         control.draw(window)
+    for card_spell in card_spells:
+        card_spell.draw(window)
     display.update()
     clock.tick(60)
 
