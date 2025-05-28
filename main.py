@@ -74,6 +74,8 @@ controls.add(Spell('images/exort.png','Exort - E',50,50,100,100))
 controls.add(Spell('images/ntg.png','Spell 1 - D',50,50,100,150))
 controls.add(Spell('images/ntg.png','Spell 2 - F',50,50,100,200))
 controls.add(Spell('images/invoke.png','Invoke - R',50,50,100,250))
+controls.add(Spell('images/invoker.png','',250,250,375,0))
+
 
 card_spells = sprite.Group()
 card_spells.add(CardSpell('images/quas.png','Q',50,50,300,600))
