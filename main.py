@@ -105,7 +105,7 @@ while run:
                 curentbuttons = ""
                 
                 if check:
-                    del SPELLS[curent_spell]
+                    del SPELLS[curent_spell]wq
                     print('Правильно')
                     curent_spell = choice(list(SPELLS.keys()))
                     spellcard = Spell(SPELLS[curent_spell][1], SPELLS[curent_spell][0], 100, 100, 350, 300)
