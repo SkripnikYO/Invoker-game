@@ -8,7 +8,11 @@ mixer.init()
 display.set_caption("Перега Сират Радик мм ее")
 window = display.set_mode((1000,700))
 clock = time.Clock()
-ELEMENTS = ['Q', 'W', 'E']
+ELEMENTS = {'q': transform.scale(image.load('images/quas.png'),(70,70)),
+            'w': transform.scale(image.load('images/wex.png'),(70,70)),
+            'e': transform.scale(image.load('images/exort.png'),(70,70)),
+            'ntg': transform.scale(image.load('images/ntg.png'),(70,70))
+            }
 SPELLS = {
     'QQQ': ['Cold Snap','images/Cold snap.png'],
     'WWW': ['EMP','images/EMP.png'],
@@ -89,27 +93,45 @@ curent_spell = choice(list(SPELLS.keys()))
 spellcard = Spell(SPELLS[curent_spell][1], SPELLS[curent_spell][0], 100, 100, 350, 300)
 curentbuttons = ""
 
+btns_spell = sprite.Group()
+spell_1 = Spell('images/ntg.png','',70,70,330,500)
+spell_2 = Spell('images/ntg.png','',70,70,430,500)
+spell_3 = Spell('images/ntg.png','',70,70,530,500)
+btns_spell.add(spell_1,spell_2,spell_3)
+
 finish = False 
 run = True
 while run:
     window.fill((0,0,0))
     for e in event.get():
         if e.type == KEYDOWN:
-            pressedkey = key.name(e.key)
-            curentbuttons+=pressedkey
-            if len(curentbuttons)>=3:
+            if e.key in [K_q, K_w, K_e, K_d, K_f]:
+                pressedkey = key.name(e.key)
+                curentbuttons+=pressedkey
+                if len(curentbuttons)>3:
+                    curentbuttons = curentbuttons[1:]
+                spell_1.image = ELEMENTS[curentbuttons[0]]
+                spell_2.image = ELEMENTS[curentbuttons[1]] if len(curentbuttons)>=2  else ELEMENTS['ntg']
+                spell_3.image = ELEMENTS[curentbuttons[2]] if len(curentbuttons)>=3  else ELEMENTS['ntg']
+
+                
+            if e.key == K_r:
                 sorted_btns = sorted(curentbuttons.upper())
                 sorted_btns = ''.join(sorted_btns)
                 check = SPELLS.get(sorted_btns)
                 print(curentbuttons)
-                curentbuttons = ""
+                
+                
                 
                 if check:
-                    del SPELLS[curent_spell]wq
+                    del SPELLS[curent_spell]
                     print('Правильно')
                     curent_spell = choice(list(SPELLS.keys()))
                     spellcard = Spell(SPELLS[curent_spell][1], SPELLS[curent_spell][0], 100, 100, 350, 300)
                     curentbuttons = ""
+                    spell_1.image = ELEMENTS['ntg']
+                    spell_2.image = ELEMENTS['ntg']
+                    spell_3.image = ELEMENTS['ntg']
                 
         if e.type == QUIT:
             run = False
@@ -120,6 +142,7 @@ while run:
     for card_spell in card_spells:
         card_spell.draw(window)
     spellcard.draw(window)
+    btns_spell.draw(window)
     display.update()
     clock.tick(60)
 
