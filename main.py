@@ -1,5 +1,5 @@
 from pygame import *
-from random import randint, choice
+from random import choice
 
 init()
 font.init()
@@ -67,56 +67,53 @@ class CardSpell(Spell):
 
 # Интерфейс
 spells = sprite.Group()
-spells.add(Spell('images/Cold snap.png', 'Cold Snap', 50, 50, 750, 0))
-spells.add(Spell('images/EMP.png', 'EMP', 50, 50, 750, 50))
-spells.add(Spell('images/Sun strike.png', 'Sun Strike', 50, 50, 750, 100))
-spells.add(Spell('images/Tornado.png', 'Tornado', 50, 50, 750, 150))
-spells.add(Spell('images/forge spirit1.png', 'Forge Spirit', 50, 50, 750, 200))
-spells.add(Spell('images/ice wall.png', 'Ice Wall', 50, 50, 750, 250))
-spells.add(Spell('images/Alacrity.png', 'Alacrity', 50, 50, 750, 300))
-spells.add(Spell('images/Ghost walk.png', 'Ghost Walk', 50, 50, 750, 350))
-spells.add(Spell('images/Chaos meteor.png', 'Chaos Meteor', 50, 50, 750, 400))
-spells.add(Spell('images/deafeaning blast.png', 'Deafening Blast', 50, 50, 750, 450))
+spells.add(Spell('images/Cold snap.png', 'Cold Snap - QQQ', 50, 50, 700, 0))
+spells.add(Spell('images/EMP.png', 'EMP - WWW', 50, 50, 700, 55))
+spells.add(Spell('images/Sun strike.png', 'Sun Strike - EEE', 50, 50, 700, 110))
+spells.add(Spell('images/Tornado.png', 'Tornado - WWQ', 50, 50, 700, 165))
+spells.add(Spell('images/forge spirit1.png', 'Forge Spirit - EEQ', 50, 50, 700, 220))
+spells.add(Spell('images/ice wall.png', 'Ice Wall - QQE', 50, 50, 700, 275))
+spells.add(Spell('images/Alacrity.png', 'Alacrity - WWE', 50, 50, 700, 330))
+spells.add(Spell('images/Ghost walk.png', 'Ghost Walk - QQW', 50, 50, 700, 385))
+spells.add(Spell('images/Chaos meteor.png', 'Chaos Meteor - EEW', 50, 50, 700, 440))
+spells.add(Spell('images/deafeaning blast.png', 'Deafening Blast - QWE', 50, 50, 700, 495))
 
 controls = sprite.Group()
-controls.add(Spell('images/quas.png', 'Quas - Q', 50, 50, 100, 0))
-controls.add(Spell('images/wex.png', 'Wex - W', 50, 50, 100, 50))
-controls.add(Spell('images/exort.png', 'Exort - E', 50, 50, 100, 100))
-controls.add(Spell('images/ntg.png', 'Spell 1 - D', 50, 50, 100, 150))
-controls.add(Spell('images/ntg.png', 'Spell 2 - F', 50, 50, 100, 200))
-controls.add(Spell('images/invoke.png', 'Invoke - R', 50, 50, 100, 250))
-controls.add(Spell('images/invoker.png', '', 250, 250, 375, 0))
+controls.add(Spell('images/quas.png', 'Quas - Q', 75, 75, 0, 0))
+controls.add(Spell('images/wex.png', 'Wex - W', 75, 75, 0, 80))
+controls.add(Spell('images/exort.png', 'Exort - E', 75, 75, 0, 160))
+controls.add(Spell('images/ntg.png', 'Spell 1 - D', 75, 75, 0, 240))
+controls.add(Spell('images/ntg.png', 'Spell 2 - F', 75, 75, 0, 320))
+controls.add(Spell('images/invoke.png', 'Invoke - R', 75, 75, 0, 400))
+controls.add(Spell('images/invoker.png', '', 400, 250, 300, 0))
 
 card_spells = sprite.Group()
-card_spells.add(CardSpell('images/quas.png', 'Q', 50, 50, 300, 600))
-card_spells.add(CardSpell('images/wex.png', 'W', 50, 50, 350, 600))
-card_spells.add(CardSpell('images/exort.png', 'E', 50, 50, 400, 600))
-card_spells.add(CardSpell('images/ntg.png', 'D', 50, 50, 450, 600))
-card_spells.add(CardSpell('images/ntg.png', 'F', 50, 50, 500, 600))
-card_spells.add(CardSpell('images/invoke.png', 'R', 50, 50, 550, 600))
+card_spells.add(CardSpell('images/quas.png', 'Q', 100, 100, 0, 600))
+card_spells.add(CardSpell('images/wex.png', 'W', 100, 100, 110, 600))
+card_spells.add(CardSpell('images/exort.png', 'E', 100, 100, 220, 600))
+card_spells.add(CardSpell('images/ntg.png', 'D', 100, 100, 330, 600))
+card_spells.add(CardSpell('images/ntg.png', 'F', 100, 100, 440, 600))
+card_spells.add(CardSpell('images/invoke.png', 'R', 100, 100, 550, 600))
 
-# Кнопки текущего набора
 btns_spell = sprite.Group()
 spell_1 = Spell('images/ntg.png', '', 70, 70, 330, 500)
 spell_2 = Spell('images/ntg.png', '', 70, 70, 430, 500)
 spell_3 = Spell('images/ntg.png', '', 70, 70, 530, 500)
 btns_spell.add(spell_1, spell_2, spell_3)
 
-# Начальные значения
 curent_spell = choice(list(SPELLS.keys()))
 spellcard = Spell(SPELLS[curent_spell][1], SPELLS[curent_spell][0], 100, 100, 350, 300)
 curentbuttons = ""
 
-# Таймер
 start_ticks = time.get_ticks()
 timer_font = font.Font(FONTNAME, 40)
 
-# Рестарт
 game_over = False
 restart_font = font.Font(FONTNAME, 50)
 restart_button = Rect(400, 400, 200, 80)
 
-# Цикл игры
+final_time = 0  # Для хранения времени когда игра закончилась
+
 run = True
 while run:
     window.fill((0, 0, 0))
@@ -143,6 +140,7 @@ while run:
                         del SPELLS[curent_spell]
                         if not SPELLS:
                             game_over = True
+                            final_time = (time.get_ticks() - start_ticks) // 1000
                         else:
                             curent_spell = choice(list(SPELLS.keys()))
                             spellcard = Spell(SPELLS[curent_spell][1], SPELLS[curent_spell][0], 100, 100, 350, 300)
@@ -162,6 +160,7 @@ while run:
                 spell_3.image = ELEMENTS['ntg']
                 start_ticks = time.get_ticks()
                 game_over = False
+                final_time = 0
 
     # Отрисовка
     for spell in spells:
@@ -176,10 +175,14 @@ while run:
     # Таймер
     if not game_over:
         seconds = (time.get_ticks() - start_ticks) // 1000
-        timer_text = timer_font.render(f"Time: {seconds}s", True, (255, 255, 255))
-        window.blit(timer_text, (800, 650))
     else:
-        # Отрисовка кнопки рестарта
+        seconds = final_time  # Показываем время, зафиксированное при окончании
+
+    timer_text = timer_font.render(f"Time: {seconds}s", True, (255, 255, 255))
+    window.blit(timer_text, (800, 650))
+
+    # Кнопка рестарта
+    if game_over:
         draw.rect(window, (50, 100, 200), restart_button)
         text = restart_font.render("RESTART", True, (255, 255, 255))
         window.blit(text, (restart_button.x + 25, restart_button.y + 20))
